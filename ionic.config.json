@@ -1,0 +1,7 @@
+{
+  "name": "Recipe-Maker",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
