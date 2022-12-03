@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RefresherCustomEvent } from '@ionic/angular';
 
-import { DataService, Message } from '../services/data.service';
+import { DataService, Message } from '../../services/data.service';
 
 @Component({
   selector: 'app-home',
