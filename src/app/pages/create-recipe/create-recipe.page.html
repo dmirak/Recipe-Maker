@@ -1,9 +1,15 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>createRecipe</ion-title>
+    <ion-title>Create Recipe</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <form #f="ngForm" (ngSubmit)="formSubmit()">
 
+    <ion-button type="submit" [disabled]="!f.valid" shape="round" fill="outline">
+      <ion-icon slot="start" name="save"></ion-icon>
+      Save recipe
+    </ion-button>
+  </form>
 </ion-content>
