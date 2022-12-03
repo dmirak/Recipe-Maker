@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "recipe-maker-b2198": {
+      "hosting": {
+        "app": [
+          "recipe-maker-b2198"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "recipe-maker-b2198"
+  }
+}
