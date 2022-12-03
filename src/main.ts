@@ -5,7 +5,11 @@ import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 
 if (environment.production) {
-  enableProdMode();
+  try {
+    enableProdMode();
+  } catch (exception) {
+    console.error('BUGFIX: calling isDevMode() in imports before enableProdMode() throws exception - https://github.com/angular/angular-cli/issues/8340#\n', exception);
+  }
 }
 
 platformBrowserDynamic().bootstrapModule(AppModule)
