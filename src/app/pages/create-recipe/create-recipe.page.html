@@ -16,6 +16,10 @@
       <ion-input placeholder="Enter time" type="number" [(ngModel)]="title" required></ion-input>
       <ion-label position="floating">Minutes</ion-label>
     </ion-item>
+    <ion-button shape="round" fill="outline">
+      <ion-icon slot="start" name="camera" (click)="takePicture()"></ion-icon>
+      Take picture
+    </ion-button>
 
     <ion-button type="submit" [disabled]="!f.valid" shape="round" fill="outline">
       <ion-icon slot="start" name="save"></ion-icon>

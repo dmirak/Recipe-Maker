@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { recipeModel, ingredient, step } from 'src/app/models/recipeModel';
+import { Camera, CameraDirection, CameraResultType, CameraSource, Photo } from '@capacitor/camera';
 
 @Component({
   selector: 'app-create-recipe',
@@ -30,6 +31,16 @@ export class CreateRecipePage implements OnInit {
       'ingredientList': this.ingredientList,
       'stepList': this.stepList
     };
+  }
+
+  async takePicture() {
+    const image = await Camera.getPhoto({
+      quality: 100,
+      allowEditing: true,
+      resultType: CameraResultType.Uri
+    });
+
+
   }
 
 }
