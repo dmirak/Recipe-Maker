@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { recipe } from 'src/app/models/recipeModel';
+import { recipeModel, ingredient, step } from 'src/app/models/recipeModel';
 
 @Component({
   selector: 'app-create-recipe',
@@ -8,6 +8,13 @@ import { recipe } from 'src/app/models/recipeModel';
 })
 export class CreateRecipePage implements OnInit {
 
+  public title = '';
+  public user = localStorage.getItem('userName') ?? '';
+  public cookTime = 0;
+  public imageLink = '';
+  public ingredientList: ingredient[] = [];
+  public stepList: step[] = [];
+
   constructor() { }
 
   ngOnInit() {
@@ -15,9 +22,14 @@ export class CreateRecipePage implements OnInit {
   }
 
   formSubmit() {
-    // const newRecipe: recipeModel = {
-
-    // };
+    const newRecipe: recipeModel = {
+      'title': this.title,
+      'user': this.user,
+      'cookTime': this.cookTime,
+      'imageLink': this.imageLink,
+      'ingredientList': this.ingredientList,
+      'stepList': this.stepList
+    };
   }
 
 }

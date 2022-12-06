@@ -1,18 +1,18 @@
-export interface recipe {
+export interface recipeModel {
     title: string;
     user: string;
     cookTime: number;
-    imageLink: string;
+    imageLink?: string;
     ingredientList: ingredient[];
     stepList: step[];
 }
 
-interface ingredient {
+export interface ingredient {
     name: string;
     quantity: string;
 }
 
-interface step {
+export interface step {
     sequence: number;
     body: string;
 }
