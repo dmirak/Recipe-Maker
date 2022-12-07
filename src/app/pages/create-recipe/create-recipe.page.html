@@ -16,11 +16,13 @@
       <ion-input placeholder="Enter time" type="number" [(ngModel)]="title" required></ion-input>
       <ion-label position="floating">Minutes</ion-label>
     </ion-item>
-    <ion-button shape="round" fill="outline">
-      <ion-icon slot="start" name="camera" (click)="takePicture()"></ion-icon>
+    <ion-button shape="round" fill="outline" (click)="takePicture()">
+      <ion-icon slot="start" name="camera"></ion-icon>
       Take picture
     </ion-button>
-
+    <!-- We want to make a custom component for both the recipe list and step list -->
+    <!-- the component will be an ion-list with inset property -->
+    <!-- the list will contain items with  -->
     <ion-button type="submit" [disabled]="!f.valid" shape="round" fill="outline">
       <ion-icon slot="start" name="save"></ion-icon>
       Save recipe

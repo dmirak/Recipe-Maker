@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { recipeModel, ingredient, step } from 'src/app/models/recipeModel';
-import { Camera, CameraDirection, CameraResultType, CameraSource, Photo } from '@capacitor/camera';
+import { Camera, CameraResultType } from '@capacitor/camera';
+import { AngularFireStorage, createStorageRef } from '@angular/fire/compat/storage';
+
 
 @Component({
   selector: 'app-create-recipe',
@@ -16,7 +18,7 @@ export class CreateRecipePage implements OnInit {
   public ingredientList: ingredient[] = [];
   public stepList: step[] = [];
 
-  constructor() { }
+  constructor(private afStorage: AngularFireStorage) { }
 
   ngOnInit() {
     console.log('Happy now???');
@@ -34,13 +36,20 @@ export class CreateRecipePage implements OnInit {
   }
 
   async takePicture() {
-    const image = await Camera.getPhoto({
+    const photo = await Camera.getPhoto({
       quality: 100,
       allowEditing: true,
       resultType: CameraResultType.Uri
     });
 
-
+    // Taken from https://github.com/VictorNorman/cs336-pwa-example
+    const response = await fetch(photo.webPath!);
+    const blob = await response.blob();
+    const { v4: uuidv4 } = require('uuid');
+    this.imageLink = uuidv4() + '.jpeg';
+    console.log(this.imageLink);
+    const storageRef = this.afStorage.ref(this.imageLink);
+    storageRef.put(blob);
   }
 
 }
