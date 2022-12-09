@@ -1,4 +1,5 @@
 export interface recipeModel {
+    id: string;
     title: string;
     user: string;
     cookTime: number;
