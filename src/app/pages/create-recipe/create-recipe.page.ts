@@ -31,7 +31,9 @@ export class CreateRecipePage {
       await this.savePicture(this.photo) :
       null;
 
+    const { v4: uuidv4 } = require('uuid');
     const newRecipe: recipeModel = {
+      'id': uuidv4(),
       'title': this.title,
       'user': this.user,
       'cookTime': this.cookTime,

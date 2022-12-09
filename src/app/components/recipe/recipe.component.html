@@ -1,0 +1,14 @@
+<ion-item *ngIf="recipe" [routerLink]="'/recipeDetail/' + recipe.id" [detail]="false">
+  <ion-label class="ion-text-wrap">
+    <h2>
+      {{ recipe.title }} by {{ recipe.user }}
+      <span class="cook-time">
+        <ion-note>{{ recipe.cookTime }} minutes</ion-note>
+        <ion-icon name="chevron-forward" size="small" *ngIf="isIos()"></ion-icon>
+      </span>
+    </h2>
+    <h3>{{ ingredientCount }} ingredient(s)</h3>
+    <h3>{{ stepCount }} step(s)</h3>
+    <ion-img [src]="imageUrl | async" alt="No photo provided"></ion-img>
+  </ion-label>
+</ion-item>
