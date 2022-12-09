@@ -19,9 +19,6 @@ export class CreateRecipePage {
   public ingredientList: ingredient[] = [];
   public stepList: step[] = [];
 
-  public from = 0;
-  public to = 0;
-
   constructor(private afStorage: AngularFireStorage) { }
 
   formSubmit() {
@@ -69,8 +66,6 @@ export class CreateRecipePage {
   }
 
   reorderSteps(e: CustomEvent<ItemReorderEventDetail>) {
-    this.from = e.detail.from;
-    this.to = e.detail.to;
     for (let i = Math.min(e.detail.from, e.detail.to); i <= Math.max(e.detail.from, e.detail.to); i++) {
       this.stepList[i].sequence === e.detail.from + 1 ?
         this.stepList[i].sequence = e.detail.to + 1 :
