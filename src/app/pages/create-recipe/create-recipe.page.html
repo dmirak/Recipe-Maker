@@ -9,23 +9,55 @@
 
     <ion-item>
       <ion-label position="floating">Recipe Name</ion-label>
-      <ion-input placeholder="Enter text" [(ngModel)]="title" required></ion-input>
+      <ion-input name="title" placeholder="Enter text" [(ngModel)]="title" required></ion-input>
     </ion-item>
+
     <ion-item>
       <ion-label position="floating">Cook Time</ion-label>
-      <ion-input placeholder="Enter time" type="number" [(ngModel)]="title" required></ion-input>
+      <ion-input name="cookTime" placeholder="Enter time" type="number" [(ngModel)]="cookTime" required></ion-input>
       <ion-label position="floating">Minutes</ion-label>
     </ion-item>
+
     <ion-button shape="round" fill="outline" (click)="takePicture()">
       <ion-icon slot="start" name="camera"></ion-icon>
       Take picture
     </ion-button>
-    <!-- We want to make a custom component for both the recipe list and step list -->
-    <!-- the component will be an ion-list with inset property -->
-    <!-- the list will contain items with  -->
+
+    <ion-list-header>Ingredients</ion-list-header>
+    <ion-list [inset]="true" lines="inset">
+
+      <ion-item *ngFor="let ingredient of ingredientList; let i=index">
+        <ion-input name="name + i" placeholder="Ingredient name" [(ngModel)]="ingredient.name"></ion-input>
+        <ion-input name="quantity + i" placeholder="Quantity" [(ngModel)]="ingredient.quantity"></ion-input>
+      </ion-item>
+
+      <ion-button shape="round" fill="outline" (click)="addIngredient()">
+        <ion-icon slot="start" name="add-circle"></ion-icon>
+        Add ingredient
+      </ion-button>
+    </ion-list>
+
+    <ion-list-header>Cooking Steps</ion-list-header>
+    <ion-list [inset]="true" lines="inset">
+      <ion-reorder-group [disabled]="false" (ionItemReorder)="reorderSteps($any($event))">
+        <ion-item *ngFor="let step of stepList; let i=index">
+          <ion-label>Step {{step.sequence}}</ion-label>
+          <ion-input name="step + i" placeholder="Instructions" [(ngModel)]="step.body"></ion-input>
+          <ion-reorder slot="end"></ion-reorder>
+        </ion-item>
+
+        <ion-button shape="round" fill="outline" (click)="addStep()">
+          <ion-icon slot="start" name="add-circle"></ion-icon>
+          Add step
+        </ion-button>
+        <p>From: {{from}} To: {{to}}</p>
+      </ion-reorder-group>
+    </ion-list>
+
     <ion-button type="submit" [disabled]="!f.valid" shape="round" fill="outline">
       <ion-icon slot="start" name="save"></ion-icon>
       Save recipe
     </ion-button>
+
   </form>
 </ion-content>

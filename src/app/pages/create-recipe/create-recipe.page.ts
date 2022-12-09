@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { recipeModel, ingredient, step } from 'src/app/models/recipeModel';
 import { Camera, CameraResultType } from '@capacitor/camera';
 import { AngularFireStorage, createStorageRef } from '@angular/fire/compat/storage';
+import { ItemReorderEventDetail } from '@ionic/angular';
 
 
 @Component({
@@ -9,7 +10,7 @@ import { AngularFireStorage, createStorageRef } from '@angular/fire/compat/stora
   templateUrl: './create-recipe.page.html',
   styleUrls: ['./create-recipe.page.scss'],
 })
-export class CreateRecipePage implements OnInit {
+export class CreateRecipePage {
 
   public title = '';
   public user = localStorage.getItem('userName') ?? '';
@@ -18,11 +19,10 @@ export class CreateRecipePage implements OnInit {
   public ingredientList: ingredient[] = [];
   public stepList: step[] = [];
 
-  constructor(private afStorage: AngularFireStorage) { }
+  public from = 0;
+  public to = 0;
 
-  ngOnInit() {
-    console.log('Happy now???');
-  }
+  constructor(private afStorage: AngularFireStorage) { }
 
   formSubmit() {
     const newRecipe: recipeModel = {
@@ -33,6 +33,8 @@ export class CreateRecipePage implements OnInit {
       'ingredientList': this.ingredientList,
       'stepList': this.stepList
     };
+
+    console.log(this.ingredientList);
   }
 
   async takePicture() {
@@ -50,6 +52,34 @@ export class CreateRecipePage implements OnInit {
     console.log(this.imageLink);
     const storageRef = this.afStorage.ref(this.imageLink);
     storageRef.put(blob);
+  }
+
+  addIngredient() {
+    this.ingredientList.push({
+      'name': '',
+      'quantity': ''
+    });
+  }
+
+  addStep() {
+    this.stepList.push({
+      'sequence': this.stepList.length + 1,
+      'body': ''
+    });
+  }
+
+  reorderSteps(e: CustomEvent<ItemReorderEventDetail>) {
+    this.from = e.detail.from;
+    this.to = e.detail.to;
+    for (let i = Math.min(e.detail.from, e.detail.to); i <= Math.max(e.detail.from, e.detail.to); i++) {
+      this.stepList[i].sequence === e.detail.from + 1 ?
+        this.stepList[i].sequence = e.detail.to + 1 :
+        this.stepList[i].sequence < e.detail.from + 1 ?
+          this.stepList[i].sequence++ :
+          this.stepList[i].sequence--
+    }
+    this.stepList.sort((a, b) => a.sequence > b.sequence ? 1 : -1);
+    e.detail.complete();
   }
 
 }
