@@ -13,8 +13,8 @@ import { CreateRecipePage } from './create-recipe.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    CreateRecipePageRoutingModule
+    CreateRecipePageRoutingModule,
   ],
   declarations: [CreateRecipePage]
 })
-export class CreateRecipePageModule {}
+export class CreateRecipePageModule { }
