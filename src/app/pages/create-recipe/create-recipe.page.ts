@@ -72,7 +72,9 @@ export class CreateRecipePage {
   }
 
   addStep() {
+    const { v4: uuidv4 } = require('uuid');
     this.stepList.push({
+      'id': uuidv4(),
       'sequence': this.stepList.length + 1,
       'body': ''
     });

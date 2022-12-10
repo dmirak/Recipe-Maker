@@ -5,15 +5,15 @@ import { ViewRecipePage } from './view-recipe.page';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ViewMessagePageRoutingModule } from './view-recipe-routing.module';
+import { ViewRecipePageRoutingModule } from './view-recipe-routing.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ViewMessagePageRoutingModule
+    ViewRecipePageRoutingModule
   ],
   declarations: [ViewRecipePage]
 })
-export class ViewRecipePageModule {}
+export class ViewRecipePageModule { }

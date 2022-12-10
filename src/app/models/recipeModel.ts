@@ -14,6 +14,7 @@ export interface ingredient {
 }
 
 export interface step {
+    id: string;
     sequence: number;
     body: string;
 }

@@ -28,8 +28,8 @@
     <ion-list [inset]="true" lines="inset">
 
       <ion-item *ngFor="let ingredient of ingredientList; let i=index">
-        <ion-input name="name + i" placeholder="Ingredient name" [(ngModel)]="ingredient.name"></ion-input>
-        <ion-input name="quantity + i" placeholder="Quantity" [(ngModel)]="ingredient.quantity"></ion-input>
+        <ion-input name="name{{i}}" placeholder="Ingredient name" [(ngModel)]="ingredient.name"></ion-input>
+        <ion-input name="quantity{{i}}" placeholder="Quantity" [(ngModel)]="ingredient.quantity"></ion-input>
       </ion-item>
 
       <ion-button shape="round" fill="outline" (click)="addIngredient()">
@@ -43,15 +43,14 @@
       <ion-reorder-group [disabled]="false" (ionItemReorder)="reorderSteps($any($event))">
         <ion-item *ngFor="let step of stepList; let i=index">
           <ion-label>Step {{step.sequence}}</ion-label>
-          <ion-input name="step + i" placeholder="Instructions" [(ngModel)]="step.body"></ion-input>
+          <ion-input name="step{{step.id}}" placeholder="Instructions" [(ngModel)]="step.body"></ion-input>
           <ion-reorder slot="end"></ion-reorder>
         </ion-item>
-
-        <ion-button shape="round" fill="outline" (click)="addStep()">
-          <ion-icon slot="start" name="add-circle"></ion-icon>
-          Add step
-        </ion-button>
       </ion-reorder-group>
+      <ion-button shape="round" fill="outline" (click)="addStep()">
+        <ion-icon slot="start" name="add-circle"></ion-icon>
+        Add step
+      </ion-button>
     </ion-list>
 
     <ion-button type="submit" [disabled]="!f.valid" shape="round" fill="outline">
