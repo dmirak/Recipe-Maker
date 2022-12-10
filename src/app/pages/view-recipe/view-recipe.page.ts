@@ -11,7 +11,6 @@ export class ViewRecipePage implements OnInit {
   public recipe!: recipeModel;
 
   constructor(
-    private data: recipeModel,
     private activatedRoute: ActivatedRoute
   ) { }
 
