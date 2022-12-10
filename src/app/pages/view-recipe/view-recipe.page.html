@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>View Recipe</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="recipe">
+    <h2>{{ recipe.title }}</h2>
+    <p>Cook time: {{ recipe.cookTime }} minutes</p>
+    <img [src]="recipe.imageLink" *ngIf="recipe.imageLink" />
+    <h3>Ingredients</h3>
+    <ul>
+      <li *ngFor="let ingredient of recipe.ingredientList">
+        {{ ingredient.name }} - {{ ingredient.quantity }}
+      </li>
+    </ul>
+    <h3>Instructions</h3>
+    <ol>
+      <li *ngFor="let step of recipe.stepList">
+        {{ step.sequence }}. {{ step.body }}
+      </li>
+    </ol>
+  </div>
+</ion-content>

@@ -7,10 +7,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule)
   },
   {
-    path: 'message/:id',
-    loadChildren: () => import('./pages/view-message/view-message.module').then(m => m.ViewMessagePageModule)
-  },
-  {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
@@ -18,6 +14,10 @@ const routes: Routes = [
   {
     path: 'create-recipe',
     loadChildren: () => import('./pages/create-recipe/create-recipe.module').then( m => m.CreateRecipePageModule)
+  },
+  {
+    path: 'view-recipe',
+    loadChildren: () => import('./pages/view-recipe/view-recipe.module').then( m => m.ViewRecipePageModule)
   },
 ];
 

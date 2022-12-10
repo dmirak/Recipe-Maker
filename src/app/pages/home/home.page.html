@@ -21,7 +21,7 @@
 
   <ion-list>
     <!-- <app-message *ngFor="let message of getMessages()" [message]="message"></app-message> -->
-    <app-recipe *ngFor="let recipe of recipes" [recipe]="recipe"></app-recipe>
+    <app-recipe *ngFor="let recipe of recipes" [recipe]="recipe" (click)="viewRecipe(recipe.id)"></app-recipe>
   </ion-list>
 
   <ion-button shape="round" fill="outline" href="/create-recipe">
