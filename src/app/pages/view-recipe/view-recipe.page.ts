@@ -1,23 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { DataService, Message } from '../../services/data.service';
+import { recipeModel } from 'src/app/models/recipeModel';
 
 @Component({
-  selector: 'app-view-message',
-  templateUrl: './view-message.page.html',
-  styleUrls: ['./view-message.page.scss'],
+  selector: 'app-view-recipe',
+  templateUrl: './view-recipe.page.html',
+  styleUrls: ['./view-recipe.page.scss'],
 })
-export class ViewMessagePage implements OnInit {
-  public message!: Message;
+export class ViewRecipePage implements OnInit {
+  public recipe!: recipeModel;
 
   constructor(
-    private data: DataService,
+    private data: recipeModel,
     private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {
     const id = this.activatedRoute.snapshot.paramMap.get('id') as string;
-    this.message = this.data.getMessageById(parseInt(id, 10));
   }
 
   getBackButtonText() {
