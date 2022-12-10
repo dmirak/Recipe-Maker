@@ -7,8 +7,8 @@ const routes: Routes = [
     loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule)
   },
   {
-    path: 'message/:id',
-    loadChildren: () => import('./pages/view-message/view-message.module').then(m => m.ViewMessagePageModule)
+    path: 'view-recipe/:id',
+    loadChildren: () => import('./pages/view-recipe/view-recipe.module').then(m => m.ViewRecipePageModule)
   },
   {
     path: '',
