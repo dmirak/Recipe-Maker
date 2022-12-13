@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { Observable } from 'rxjs';
 import { recipeModel } from 'src/app/models/recipeModel';
@@ -10,6 +10,7 @@ import { recipeModel } from 'src/app/models/recipeModel';
 })
 export class RecipeComponent implements OnInit {
   @Input() recipe?: recipeModel;
+  @Output() deleteRecipeEvent = new EventEmitter<string>();
 
   public imageUrl?: Observable<string>;
   public ingredientCount = 0;
@@ -30,5 +31,9 @@ export class RecipeComponent implements OnInit {
   isIos() {
     const win = window as any;
     return win && win.Ionic && win.Ionic.mode === 'ios';
+  }
+
+  deleteRecipe() {
+    this.deleteRecipeEvent.emit(this.recipe?.id);
   }
 }

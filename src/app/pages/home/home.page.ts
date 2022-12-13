@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { RefresherCustomEvent } from '@ionic/angular';
+import { LoadingController, RefresherCustomEvent } from '@ionic/angular';
 import { recipeModel } from 'src/app/models/recipeModel';
 
 @Component({
@@ -12,7 +12,11 @@ export class HomePage {
   public recipes: recipeModel[] = [];
 
   constructor(private db: AngularFirestore) {
-    db.collection<recipeModel>('/recipes').valueChanges().subscribe(result => {
+    this.loadRecipes();
+  }
+
+  loadRecipes() {
+    this.db.collection<recipeModel>('/recipes').valueChanges().subscribe(result => {
       if (result)
         this.recipes = result;
     });
@@ -23,4 +27,27 @@ export class HomePage {
       (ev as RefresherCustomEvent).detail.complete();
     }, 3000);
   }
+
+  deleteRecipe(id: string) {
+    if (id) {
+      // this.db.doc<recipeModel>('recipes/' + id).get().subscribe((recipe) => {
+      //   if (localStorage.getItem('userName') === recipe.data()?.user) {
+      //     this.db.doc<recipeModel>('recipes/' + id).delete().then(() => {
+      //       this.loadRecipes();
+      //     }).catch((error) => {
+      //       console.log(error);
+      //     });
+      //   }
+      // }, (error) => {
+      //   console.log(error);
+      // }
+
+      this.db.doc<recipeModel>('recipes/' + id).delete().then(() => {
+        this.loadRecipes();
+      }).catch((error) => {
+        console.log(error);
+      });
+    }
+  }
+
 }
