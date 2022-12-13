@@ -28,8 +28,8 @@
     <ion-list [inset]="true" lines="inset">
 
       <ion-item *ngFor="let ingredient of ingredientList; let i=index">
-        <ion-input name="name + i" placeholder="Ingredient name" [(ngModel)]="ingredient.name"></ion-input>
-        <ion-input name="quantity + i" placeholder="Quantity" [(ngModel)]="ingredient.quantity"></ion-input>
+        <ion-input name="name{{i}}" placeholder="Ingredient name" [(ngModel)]="ingredient.name"></ion-input>
+        <ion-input name="quantity{{i}}" placeholder="Quantity" [(ngModel)]="ingredient.quantity"></ion-input>
       </ion-item>
 
       <ion-button shape="round" fill="outline" (click)="addIngredient()">

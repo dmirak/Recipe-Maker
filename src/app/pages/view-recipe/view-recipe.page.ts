@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ActivatedRoute } from '@angular/router';
+import { IonBackButton } from '@ionic/angular';
 
 import { recipeModel } from 'src/app/models/recipeModel';
 
