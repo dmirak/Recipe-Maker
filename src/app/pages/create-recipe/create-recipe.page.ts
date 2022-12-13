@@ -3,7 +3,7 @@ import { recipeModel, ingredient, step } from 'src/app/models/recipeModel';
 import { Camera, CameraResultType, Photo } from '@capacitor/camera';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { ItemReorderEventDetail } from '@ionic/angular';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AngularFirestore, DocumentReference } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
 
 @Component({
@@ -31,9 +31,8 @@ export class CreateRecipePage {
       await this.savePicture(this.photo) :
       null;
 
-    const { v4: uuidv4 } = require('uuid');
     const newRecipe: recipeModel = {
-      'id': uuidv4(),
+      'id': '0',
       'title': this.title,
       'user': this.user,
       'cookTime': this.cookTime,
@@ -41,9 +40,18 @@ export class CreateRecipePage {
       'ingredientList': this.ingredientList,
       'stepList': this.stepList
     };
-    this.db.collection<recipeModel>('/recipes').add(newRecipe);
 
-    this.router.navigate(['/']);
+    this.db.collection<recipeModel>('/recipes').add(newRecipe).then((recipe: DocumentReference<recipeModel>) => {
+      recipe.update({
+        'id': recipe.id
+      }).then(() => {
+        this.router.navigate(['/']);
+      }).catch((error) => {
+        console.log(error);
+      });
+    }).catch((error) => {
+      console.log(error);
+    });
   }
 
   async takePicture() {
@@ -72,7 +80,9 @@ export class CreateRecipePage {
   }
 
   addStep() {
+    const { v4: uuidv4 } = require('uuid');
     this.stepList.push({
+      'id': uuidv4(),
       'sequence': this.stepList.length + 1,
       'body': ''
     });
@@ -88,5 +98,16 @@ export class CreateRecipePage {
     }
     this.stepList.sort((a, b) => a.sequence > b.sequence ? 1 : -1);
     e.detail.complete();
+  }
+
+  deleteIngredient(index: number) {
+    this.ingredientList.splice(index, 1);
+  }
+
+  deleteStep(index: number) {
+    this.stepList.splice(index, 1);
+    for (let i = index; i < this.stepList.length; i++) {
+      this.stepList[i].sequence--;
+    }
   }
 }

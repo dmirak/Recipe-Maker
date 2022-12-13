@@ -10,6 +10,7 @@ import { recipeModel } from 'src/app/models/recipeModel';
   templateUrl: './view-recipe.page.html',
   styleUrls: ['./view-recipe.page.scss'],
 })
+
 export class ViewRecipePage {
   public recipe: recipeModel | undefined;
 

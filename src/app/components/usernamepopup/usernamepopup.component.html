@@ -1,5 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Enter username
+    </ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="saveUsername()">
+        Save
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
 
-<ion-item>
-
-</ion-item>
-
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label position="stacked">Username</ion-label>
+      <ion-input [(ngModel)]="username" type="text"></ion-input>
+    </ion-item>
+  </ion-list>
+</ion-content>
