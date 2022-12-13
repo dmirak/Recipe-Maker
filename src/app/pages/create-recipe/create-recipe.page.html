@@ -26,11 +26,18 @@
 
     <ion-list-header>Ingredients</ion-list-header>
     <ion-list [inset]="true" lines="inset">
+      <ion-item-sliding *ngFor="let ingredient of ingredientList; let i=index">
+        <ion-item>
+          <ion-input name="name{{i}}" placeholder="Ingredient name" [(ngModel)]="ingredient.name"></ion-input>
+          <ion-input name="quantity{{i}}" placeholder="Quantity" [(ngModel)]="ingredient.quantity"></ion-input>
+        </ion-item>
+        <ion-item-options side="end">
+          <ion-item-option color="danger">
+            <ion-icon slot="icon-only" name="trash" (click)="deleteIngredient(i)"></ion-icon>
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
 
-      <ion-item *ngFor="let ingredient of ingredientList; let i=index">
-        <ion-input name="name{{i}}" placeholder="Ingredient name" [(ngModel)]="ingredient.name"></ion-input>
-        <ion-input name="quantity{{i}}" placeholder="Quantity" [(ngModel)]="ingredient.quantity"></ion-input>
-      </ion-item>
 
       <ion-button shape="round" fill="outline" (click)="addIngredient()">
         <ion-icon slot="start" name="add-circle"></ion-icon>
@@ -41,11 +48,18 @@
     <ion-list-header>Cooking Steps</ion-list-header>
     <ion-list [inset]="true" lines="inset">
       <ion-reorder-group [disabled]="false" (ionItemReorder)="reorderSteps($any($event))">
-        <ion-item *ngFor="let step of stepList; let i=index">
-          <ion-label>Step {{step.sequence}}</ion-label>
-          <ion-input name="step{{step.id}}" placeholder="Instructions" [(ngModel)]="step.body"></ion-input>
-          <ion-reorder slot="end"></ion-reorder>
-        </ion-item>
+        <ion-item-sliding *ngFor="let step of stepList; let i=index">
+          <ion-item>
+            <ion-label>Step {{step.sequence}}</ion-label>
+            <ion-input name="step{{step.id}}" placeholder="Instructions" [(ngModel)]="step.body"></ion-input>
+            <ion-reorder slot="end"></ion-reorder>
+          </ion-item>
+          <ion-item-options side="end">
+            <ion-item-option color="danger">
+              <ion-icon slot="icon-only" name="trash" (click)="deleteStep(i)"></ion-icon>
+            </ion-item-option>
+          </ion-item-options>
+        </ion-item-sliding>
       </ion-reorder-group>
       <ion-button shape="round" fill="outline" (click)="addStep()">
         <ion-icon slot="start" name="add-circle"></ion-icon>
