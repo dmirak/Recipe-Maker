@@ -99,4 +99,15 @@ export class CreateRecipePage {
     this.stepList.sort((a, b) => a.sequence > b.sequence ? 1 : -1);
     e.detail.complete();
   }
+
+  deleteIngredient(index: number) {
+    this.ingredientList.splice(index, 1);
+  }
+
+  deleteStep(index: number) {
+    this.stepList.splice(index, 1);
+    for (let i = index; i < this.stepList.length; i++) {
+      this.stepList[i].sequence--;
+    }
+  }
 }
