@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ViewRecipePage } from './view-recipe.page';
 
 import { IonicModule } from '@ionic/angular';
 
 import { ViewRecipePageRoutingModule } from './view-recipe-routing.module';
+
+import { ViewRecipePage } from './view-recipe.page';
 
 @NgModule({
   imports: [
@@ -16,4 +17,4 @@ import { ViewRecipePageRoutingModule } from './view-recipe-routing.module';
   ],
   declarations: [ViewRecipePage]
 })
-export class ViewRecipePageModule { }
+export class ViewRecipePageModule {}

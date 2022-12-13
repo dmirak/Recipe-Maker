@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { ViewRecipePage } from './view-recipe.page';
+import { UsernamepopupComponent } from './usernamepopup.component';
 
-describe('ViewRecipePage', () => {
-  let component: ViewRecipePage;
-  let fixture: ComponentFixture<ViewRecipePage>;
+describe('UsernamepopupComponent', () => {
+  let component: UsernamepopupComponent;
+  let fixture: ComponentFixture<UsernamepopupComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ViewRecipePage ],
+      declarations: [ UsernamepopupComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ViewRecipePage);
+    fixture = TestBed.createComponent(UsernamepopupComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

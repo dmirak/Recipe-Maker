@@ -20,8 +20,7 @@
   </ion-header>
 
   <ion-list>
-    <app-recipe *ngFor="let recipe of recipes" [recipe]="recipe"
-      (deleteRecipeEvent)="deleteRecipe($event)"></app-recipe>
+    <app-recipe *ngFor="let recipe of recipes" [recipe]="recipe" (click)="viewRecipe(recipe.id)" (deleteRecipeEvent)="deleteRecipe($event)"></app-recipe>
   </ion-list>
 
   <ion-button shape="round" fill="outline" href="/create-recipe">

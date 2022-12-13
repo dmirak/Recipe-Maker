@@ -1,6 +1,7 @@
 import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
+import { UsernamepopupComponentModule } from './components/usernamepopup/usernamepopup.module';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
@@ -27,6 +28,7 @@ import { FormsModule } from '@angular/forms';
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
     }),
+    UsernamepopupComponentModule
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
