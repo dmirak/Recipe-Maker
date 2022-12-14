@@ -7,7 +7,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <app-usernamepopup></app-usernamepopup>
+  <app-usernamepopup *ngIf="!user"></app-usernamepopup>
 
   <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
     <ion-refresher-content></ion-refresher-content>
