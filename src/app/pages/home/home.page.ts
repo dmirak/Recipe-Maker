@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { LoadingController, RefresherCustomEvent } from '@ionic/angular';
+import { RefresherCustomEvent } from '@ionic/angular';
 import { recipeModel } from 'src/app/models/recipeModel';
 import { Router } from '@angular/router';
-
 
 @Component({
   selector: 'app-home',
@@ -12,11 +11,11 @@ import { Router } from '@angular/router';
 })
 export class HomePage {
   public recipes: recipeModel[] = [];
-  public user = localStorage.getItem('userName') 
+  public user = localStorage.getItem('userName')
 
-  ionViewDidEnter() {
-    localStorage.removeItem("userName");
-  }
+  // ionViewDidEnter() {
+  //   localStorage.removeItem("userName");
+  // }
 
   constructor(private db: AngularFirestore, private router: Router) {
     db.collection<recipeModel>('/recipes').valueChanges().subscribe(result => {
@@ -44,6 +43,8 @@ export class HomePage {
 
   deleteRecipe(id: string) {
     if (id) {
+      // This will check to see if your username matches the user on the recipe
+      // before deleting. Didn't have time to make sure this was working correctly
       // this.db.doc<recipeModel>('recipes/' + id).get().subscribe((recipe) => {
       //   if (localStorage.getItem('userName') === recipe.data()?.user) {
       //     this.db.doc<recipeModel>('recipes/' + id).delete().then(() => {
