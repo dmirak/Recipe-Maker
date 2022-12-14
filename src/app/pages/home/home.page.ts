@@ -11,11 +11,7 @@ import { Router } from '@angular/router';
 })
 export class HomePage {
   public recipes: recipeModel[] = [];
-  public user = localStorage.getItem('userName')
-
-  // ionViewDidEnter() {
-  //   localStorage.removeItem("userName");
-  // }
+  public user = localStorage.getItem('userName');
 
   constructor(private db: AngularFirestore, private router: Router) {
     db.collection<recipeModel>('/recipes').valueChanges().subscribe(result => {
@@ -59,6 +55,7 @@ export class HomePage {
 
       this.db.doc<recipeModel>('recipes/' + id).delete().then(() => {
         this.loadRecipes();
+        this.router.navigate(['/']);
       }).catch((error) => {
         console.log(error);
       });

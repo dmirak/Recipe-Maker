@@ -19,8 +19,8 @@
   </ion-header>
 
   <div *ngIf="recipe">
-    <h1>{{ recipe.title }}</h1>
-
+    <h1>{{ recipe.title }} by {{ recipe.user }}</h1>
+    <ion-img [src]="imageUrl | async" alt="No photo provided"></ion-img>
     <h2>Ingredients:</h2>
     <ul>
       <li *ngFor="let ingredient of recipe.ingredientList">
