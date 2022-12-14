@@ -9,7 +9,7 @@ import { UsernamepopupComponent } from './usernamepopup.component'
 
 @NgModule({
   imports: [CommonModule, FormsModule, IonicModule, RouterModule],
-  declarations: [UsernamepopupComponent],
-  exports: [UsernamepopupComponent]
+  // declarations: [UsernamepopupComponent],
+  // exports: [UsernamepopupComponent]
 })
 export class UsernamepopupComponentModule { }

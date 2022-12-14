@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { LoadingController, RefresherCustomEvent } from '@ionic/angular';
+import { RefresherCustomEvent, PopoverController, IonPopover } from '@ionic/angular';
 import { recipeModel } from 'src/app/models/recipeModel';
 import { Router } from '@angular/router';
+import { UsernamepopupComponent } from 'src/app/components/usernamepopup/usernamepopup.component';
 
 
 @Component({
@@ -11,8 +12,11 @@ import { Router } from '@angular/router';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  @ViewChild('usernamePopover', { static: false }) usernamePopover!: IonPopover;
+  
   public recipes: recipeModel[] = [];
 localStorage: any;
+  popover!: HTMLIonPopoverElement;
 
   constructor(private db: AngularFirestore, private router: Router) {
     db.collection<recipeModel>('/recipes').valueChanges().subscribe(result => {
@@ -20,6 +24,7 @@ localStorage: any;
         this.recipes = result;
     });
   }
+
 
   loadRecipes() {
     this.db.collection<recipeModel>('/recipes').valueChanges().subscribe(result => {

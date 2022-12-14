@@ -1,21 +1,14 @@
-<ion-header>
+<ion-header *ngIf="!usernameSaved">
   <ion-toolbar>
-    <ion-title>
-      Enter username
-    </ion-title>
-    <ion-buttons slot="primary">
-      <ion-button (click)="saveUsername()">
-        Save
-      </ion-button>
-    </ion-buttons>
+    <ion-title size="medium">Enter Your Username</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-list>
-    <ion-item>
-      <ion-label position="stacked">Username</ion-label>
-      <ion-input [(ngModel)]="username" type="text"></ion-input>
-    </ion-item>
-  </ion-list>
+<ion-content *ngIf="!usernameSaved">
+  <ion-item>
+    <ion-label position="floating">Username</ion-label>
+    <ion-input type="text" [(ngModel)]="username"></ion-input>
+  </ion-item>
+
+  <ion-button expand="full" (click)="saveUsername()">Submit</ion-button>
 </ion-content>
